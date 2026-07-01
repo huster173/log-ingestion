@@ -1,0 +1,5 @@
+com\logingestion\client\LogClient.class
+com\logingestion\client\stats\ClientStats.class
+com\logingestion\client\config\ClientConfig.class
+com\logingestion\client\sender\LogSender.class
+com\logingestion\client\producer\LogGenerator.class

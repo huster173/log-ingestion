@@ -1,0 +1,10 @@
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\config\AppConfig.java
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\config\ServerProperties.java
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\controller\LogController.java
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\controller\StatsController.java
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\LogServerApplication.java
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\processor\BatchProcessor.java
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\processor\RetryExecutor.java
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\queue\LogQueue.java
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\repository\LogRepository.java
+C:\Users\dungndt2_vtp\Desktop\log-ingestion-v2\log-server\src\main\java\com\logingestion\server\stats\ServerStats.java

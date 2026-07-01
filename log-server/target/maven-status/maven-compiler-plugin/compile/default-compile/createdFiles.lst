@@ -1,0 +1,16 @@
+com\logingestion\server\config\ServerProperties$Batch.class
+com\logingestion\server\config\ServerProperties.class
+com\logingestion\server\queue\LogQueue.class
+META-INF\spring-configuration-metadata.json
+com\logingestion\server\config\ServerProperties$Retry.class
+com\logingestion\server\config\ServerProperties$Queue.class
+com\logingestion\server\config\AppConfig.class
+com\logingestion\server\controller\StatsController.class
+com\logingestion\server\repository\LogRepository.class
+com\logingestion\server\LogServerApplication.class
+com\logingestion\server\repository\LogRepository$1.class
+com\logingestion\server\controller\LogController.class
+com\logingestion\server\config\ServerProperties$Stats.class
+com\logingestion\server\processor\BatchProcessor.class
+com\logingestion\server\processor\RetryExecutor.class
+com\logingestion\server\stats\ServerStats.class

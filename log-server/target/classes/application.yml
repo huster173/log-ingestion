@@ -1,0 +1,109 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: log-server
+
+  # Java 21 Virtual Threads — cho phép Tomcat xử lý nhiều request đồng thời
+  # với chi phí thread thấp hơn rất nhiều so với platform threads
+  threads:
+    virtual:
+      enabled: true
+
+  # H2 in-memory database (dev/demo)
+  # Để dùng PostgreSQL: thay url/driver/username/password bên dưới
+  datasource:
+    url: jdbc:h2:mem:logs;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    hikari:
+      pool-name: LogDB
+      minimum-idle: 4
+      maximum-pool-size: 16
+      connection-timeout: 3000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      connection-test-query: SELECT 1
+
+  # Tự động tạo schema từ schema.sql khi startup
+  sql:
+    init:
+      mode: always
+
+  # Jackson — serialize Instant thành ISO 8601 string
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+  # H2 console — truy cập qua http://localhost:8080/h2-console (dev only)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # Tắt Spring Security auto-config (không cần auth cho internal service)
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+# Spring Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+# Log Ingestion Server configuration
+log:
+  server:
+    queue:
+      # Số log tối đa trong internal queue
+      capacity: 200000
+      # Cảnh báo khi queue đạt 75% capacity
+      warn-threshold: 0.75
+      # Drop khi queue đạt 95% capacity (chống quá tải)
+      drop-threshold: 0.95
+    batch:
+      # Số log trong mỗi JDBC batch insert
+      size: 500
+      # Flush batch sau 200ms dù chưa đủ size
+      flush-ms: 200
+      # Số worker threads xử lý batch song song
+      processor-threads: 4
+    retry:
+      # Retry tối đa 3 lần khi DB insert lỗi
+      max-retries: 3
+      # Backoff ban đầu 100ms
+      initial-backoff-ms: 100
+      # Backoff tối đa 2000ms (exponential: 100 → 200 → 400 → 800... cap 2000)
+      max-backoff-ms: 2000
+    stats:
+      # In stats report mỗi 5 giây
+      interval-ms: 5000
+
+# Logging configuration
+logging:
+  level:
+    com.logingestion: INFO
+    com.zaxxer.hikari: WARN
+    org.h2: WARN
+    org.springframework: WARN
+    org.springframework.web: INFO
+
+info:
+  app:
+    name: Log Ingestion Server
+    version: 2.0.0
+    java-version: 21
+    description: High-throughput log ingestion with Spring Boot + Virtual Threads

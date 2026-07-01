@@ -1,0 +1,106 @@
+{
+  "groups": [
+    {
+      "name": "log.server",
+      "type": "com.logingestion.server.config.ServerProperties",
+      "sourceType": "com.logingestion.server.config.ServerProperties"
+    },
+    {
+      "name": "log.server.batch",
+      "type": "com.logingestion.server.config.ServerProperties$Batch",
+      "sourceType": "com.logingestion.server.config.ServerProperties",
+      "sourceMethod": "getBatch()"
+    },
+    {
+      "name": "log.server.queue",
+      "type": "com.logingestion.server.config.ServerProperties$Queue",
+      "sourceType": "com.logingestion.server.config.ServerProperties",
+      "sourceMethod": "getQueue()"
+    },
+    {
+      "name": "log.server.retry",
+      "type": "com.logingestion.server.config.ServerProperties$Retry",
+      "sourceType": "com.logingestion.server.config.ServerProperties",
+      "sourceMethod": "getRetry()"
+    },
+    {
+      "name": "log.server.stats",
+      "type": "com.logingestion.server.config.ServerProperties$Stats",
+      "sourceType": "com.logingestion.server.config.ServerProperties",
+      "sourceMethod": "getStats()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "log.server.batch.flush-ms",
+      "type": "java.lang.Long",
+      "description": "Flush batch sau X ms dù chưa đủ size",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Batch",
+      "defaultValue": 200
+    },
+    {
+      "name": "log.server.batch.processor-threads",
+      "type": "java.lang.Integer",
+      "description": "Số worker thread xử lý batch song song",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Batch",
+      "defaultValue": 4
+    },
+    {
+      "name": "log.server.batch.size",
+      "type": "java.lang.Integer",
+      "description": "Số log tối đa trong 1 JDBC batch insert",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Batch",
+      "defaultValue": 500
+    },
+    {
+      "name": "log.server.queue.capacity",
+      "type": "java.lang.Integer",
+      "description": "Số lượng log tối đa trong internal queue",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Queue",
+      "defaultValue": 200000
+    },
+    {
+      "name": "log.server.queue.drop-threshold",
+      "type": "java.lang.Double",
+      "description": "Bắt đầu drop khi queue đạt X% capacity",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Queue",
+      "defaultValue": 0.95
+    },
+    {
+      "name": "log.server.queue.warn-threshold",
+      "type": "java.lang.Double",
+      "description": "Cảnh báo khi queue đạt X% capacity",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Queue",
+      "defaultValue": 0.75
+    },
+    {
+      "name": "log.server.retry.initial-backoff-ms",
+      "type": "java.lang.Long",
+      "description": "Thời gian chờ ban đầu trước khi retry (ms)",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Retry",
+      "defaultValue": 100
+    },
+    {
+      "name": "log.server.retry.max-backoff-ms",
+      "type": "java.lang.Long",
+      "description": "Thời gian chờ tối đa giữa các retry (ms)",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Retry",
+      "defaultValue": 2000
+    },
+    {
+      "name": "log.server.retry.max-retries",
+      "type": "java.lang.Integer",
+      "description": "Số lần retry tối đa khi DB insert lỗi",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Retry",
+      "defaultValue": 3
+    },
+    {
+      "name": "log.server.stats.interval-ms",
+      "type": "java.lang.Long",
+      "description": "Khoảng thời gian giữa các lần in stats (ms)",
+      "sourceType": "com.logingestion.server.config.ServerProperties$Stats",
+      "defaultValue": 5000
+    }
+  ],
+  "hints": []
+}
